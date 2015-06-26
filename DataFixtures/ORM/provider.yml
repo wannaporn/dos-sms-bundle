@@ -1,0 +1,8 @@
+DoS\SMSBundle\Model\Provider:
+    dummy:
+        name: dummy
+        description: Dummy
+
+    nexmo:
+        name: nexmo
+        description: Nexmo

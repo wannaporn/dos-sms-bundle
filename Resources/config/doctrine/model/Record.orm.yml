@@ -1,0 +1,69 @@
+DoS\SMSBundle\Model\Record:
+    type: mappedSuperclass
+    table: dos_sms_record
+
+    id:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+
+    fields:
+        transactionId:
+            type: string
+            column: transaction_id
+
+        number:
+            type: string
+
+        message:
+            type: string
+
+        state:
+            type: string
+
+        duration:
+            type: float
+            nullable: null
+
+        price:
+            type: float
+            nullable: true
+
+        responded:
+            type: boolean
+
+        responder:
+            type: array
+
+        respondedAt:
+            type: datetime
+            column: responded_at
+            nullable: true
+
+        currency:
+            type: string
+            length: 3
+
+        createdAt:
+            type: datetime
+            column: created_at
+            gedmo:
+                timestampable:
+                    on: create
+
+        updatedAt:
+            type: datetime
+            column: updated_at
+            gedmo:
+                timestampable:
+                    on: update
+
+    manyToOne:
+        provider:
+            cascade: [all]
+            targetEntity: DoS\SMSBundle\Model\ProviderInterface
+
+        user:
+            targetEntity: DoS\UserBundle\Model\UserInterface

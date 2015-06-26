@@ -1,0 +1,35 @@
+parameters:
+    dos.sms.provider.provider.class: DoS\SMSBundle\Provider\ProviderProvider
+    dos.sms.record.provider.class: DoS\SMSBundle\Provider\RecordProvider
+
+    dos.sms.sender.provider.dummy.class: SmsSender\Provider\DummyProvider
+    dos.sms.sender.provider.nexmo.class: DoS\SMSBundle\SMS\Provider\Nexmo
+
+    dos.sms.callback.provider.nexmo.class: DoS\SMSBundle\SMS\Provider\NexmoCallback
+
+services:
+    dos.sms.provider.provider:
+        class: %dos.sms.provider.provider.class%
+        arguments:
+            - @dos.manager.sms_provider
+            - %dos.model.sms_provider.class%
+
+    dos.sms.provider.record:
+        class: %dos.sms.record.provider.class%
+        arguments:
+            - @event_dispatcher
+            - @dos.sms.provider.provider
+            - @dos.manager.sms_record
+            - %dos.model.sms_record.class%
+
+    dos.sms.sender.provider.dummy:
+        class: %dos.sms.sender.provider.dummy.class%
+
+    dos.sms.sender.provider.nexmo:
+        class: %dos.sms.sender.provider.nexmo.class%
+        arguments: ~
+
+    dos.sms.callback.provider.nexmo:
+        class: %dos.sms.callback.provider.nexmo.class%
+        tags:
+            - {name: dos.sms.provider_callback, alias: nexmo}

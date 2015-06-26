@@ -1,0 +1,69 @@
+parameters:
+    dos.sms.testing_number: null
+    dos.sms.sender.default.class: SmsSender\SmsSender
+    dos.sms.sender.testing.class: SmsSender\SingleRecipientSender
+    dos.sms.sender.delayed.class: SmsSender\DelayedSender
+    dos.sms.sender.storable.class: DoS\SMSBundle\SMS\StorableSender
+    dos.sms.sender.logger.class: DoS\SMSBundle\SMS\Logger
+
+    dos.sms.http_adapter.buzz.class: SmsSender\HttpAdapter\BuzzHttpAdapter
+    dos.sms.http_adapter.curl.class: SmsSender\HttpAdapter\CurlHttpAdapter
+
+    dos.sms.pool.memory.class: SmsSender\Pool\MemoryPool
+
+    dos.sms.data_collector.sender.class: DoS\SMSBundle\DataCollector\SmsSenderDataCollector
+
+services:
+    dos.sms.sender.default:
+        class: %dos.sms.sender.default.class%
+
+    dos.sms.sender.testing:
+        class: %dos.sms.sender.testing.class%
+        arguments:
+            - @dos.sms.sender.storable
+            - %dos.sms.testing_number%
+
+    dos.sms.sender.delayed:
+        class: %dos.sms.sender.delayed.class%
+        arguments:
+            - @dos.sms.sender.storable
+            - @dos.sms.pool
+
+    dos.sms.sender.storable:
+        class: %dos.sms.sender.storable.class%
+        arguments:
+            - @dos.sms.provider.record
+            - @dos.sms.sender.default
+            - @dos.sms.sender.logger
+
+    dos.sms.sender.logger:
+        class: %dos.sms.sender.logger.class%
+        arguments:
+            - @logger
+        tags:
+            - {name: monolog.logger, channel: sms_sender}
+
+    dos.sms.sender: @dos.sms.sender.delayed
+
+    dos.sms.http_adapter.buzz:
+        class: %dos.sms.http_adapter.buzz.class%
+        public: false
+
+    dos.sms.http_adapter.curl:
+        class: %dos.sms.http_adapter.curl.class%
+        public: false
+
+    dos.sms.http_adapter: @dos.sms.http_adapter.curl
+
+    dos.sms.pool.memory:
+        class: %dos.sms.pool.memory.class%
+        public: false
+
+    dos.sms.pool: @dos.sms.pool.memory
+
+    dos.sms.data_collector.sender:
+        class: %dos.sms.data_collector.sender.class%
+        arguments:
+            - @dos.sms.sender.logger
+        tags:
+            - {name: data_collector, id: dos_sms_sender, template: "DoSSMSBundle:Collector:smsSender"}

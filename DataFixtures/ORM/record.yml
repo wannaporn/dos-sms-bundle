@@ -1,0 +1,9 @@
+DoS\SMSBundle\Model\Record:
+    record{1..20}:
+        transactionId: <uuid()>
+        number: <phoneNumber()>
+        message: <text(50)>
+        state: <randomElement(['draft', 'sent', 'failed', 'delivered'])>
+        price: <numberBetween(1000, 10000)>
+        provider: <randomElement([@dummy, @nexmo])>
+        user: @user<numberBetween(1, 50)>

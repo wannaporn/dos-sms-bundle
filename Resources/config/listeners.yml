@@ -1,0 +1,10 @@
+parameters:
+    dos.sms.listener.flush_sms.class: DoS\SMSBundle\EventListener\FlushSenderSubscriber
+
+services:
+    dos.sms.listener.flush_sms:
+        class: %dos.sms.listener.flush_sms.class%
+        arguments:
+            - @service_container
+        tags:
+            - {name: kernel.event_subscriber}

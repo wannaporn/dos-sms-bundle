@@ -1,0 +1,57 @@
+DoS\SMSBundle\Model\Provider:
+    type: mappedSuperclass
+    table: dos_sms_provider
+
+    id:
+        id:
+            id: true
+            type: integer
+            generator:
+                strategy: AUTO
+
+    fields:
+        name:
+            type: string
+
+        description:
+            type: string
+
+        endpoint:
+            type: string
+            nullable: true
+
+        callbackUrl:
+            type: string
+            column: callback_url
+            nullable: true
+
+        parameters:
+            type: array
+
+        method:
+            type: string
+            length: 5
+
+        actived:
+            type: boolean
+
+        price:
+            type: float
+
+        currency:
+            type: string
+            length: 3
+
+        createdAt:
+            type: datetime
+            column: created_at
+            gedmo:
+                timestampable:
+                    on: create
+
+        updatedAt:
+            type: datetime
+            column: updated_at
+            gedmo:
+                timestampable:
+                    on: update

@@ -1,0 +1,48 @@
+route_backend_sms_record_index:
+    path: /
+    methods: [GET]
+    defaults:
+        _controller: dos.controller.sms_record:indexAction
+        _sylius:
+            template: ui:package/backend/SMS/Record:index.html.twig
+            sortable: true
+
+route_backend_sms_record_create:
+    methods: [GET, POST]
+    path: /new
+    defaults:
+        _controller: dos.controller.sms_record:createAction
+        _sylius:
+            template: ui:package/backend/SMS/Record:create.html.twig
+            redirect: route_backend_sms_record_index
+
+route_backend_sms_record_update:
+    methods: [GET, PUT, PATCH]
+    path: /{id}/edit
+    requirements:
+        id: \d+
+    defaults:
+        _controller: dos.controller.sms_record:updateAction
+        _sylius:
+            template: ui:package/backend/SMS/Record:update.html.twig
+            redirect: route_backend_sms_record_index
+
+route_backend_sms_record_restore:
+    methods: [GET, PATCH]
+    path: /{id}/restore
+    requirements:
+        id: \d+
+    defaults:
+        _controller: dos.controller.sms_record:restoreAction
+        _sylius:
+            redirect: route_backend_sms_record_index
+
+route_backend_sms_record_delete:
+    methods: [DELETE]
+    path: /{id}/delete
+    requirements:
+        id: \d+
+    defaults:
+        _controller: dos.controller.sms_record:deleteAction
+        _sylius:
+            redirect: route_backend_sms_record_index

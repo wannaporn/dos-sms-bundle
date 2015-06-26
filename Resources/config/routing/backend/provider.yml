@@ -1,0 +1,58 @@
+route_backend_sms_provider_index:
+    path: /
+    methods: [GET]
+    defaults:
+        _controller: dos.controller.sms_provider:indexAction
+        _sylius:
+            template: ui:package/backend/SMS/Provider:index.html.twig
+            sortable: true
+
+route_backend_sms_provider_create:
+    methods: [GET, POST]
+    path: /new
+    defaults:
+        _controller: dos.controller.sms_provider:createAction
+        _sylius:
+            template: ui:package/backend/SMS/Provider:create.html.twig
+            redirect: route_backend_sms_provider_index
+
+route_backend_sms_provider_update:
+    methods: [GET, PUT, PATCH]
+    path: /{id}/edit
+    requirements:
+        id: \d+
+    defaults:
+        _controller: dos.controller.sms_provider:updateAction
+        _sylius:
+            template: ui:package/backend/SMS/Provider:update.html.twig
+            redirect: route_backend_sms_provider_index
+
+route_backend_sms_provider_restore:
+    methods: [GET, PATCH]
+    path: /{id}/restore
+    requirements:
+        id: \d+
+    defaults:
+        _controller: dos.controller.sms_provider:restoreAction
+        _sylius:
+            redirect: route_backend_sms_provider_index
+
+route_backend_sms_provider_delete:
+    methods: [DELETE]
+    path: /{id}/delete
+    requirements:
+        id: \d+
+    defaults:
+        _controller: dos.controller.sms_provider:deleteAction
+        _sylius:
+            redirect: route_backend_sms_provider_index
+
+route_backend_sms_provider_active:
+    methods: [GET, PATCH]
+    path: /{id}/active/{state}
+    requirements:
+        id: \d+
+    defaults:
+        _controller: dos.controller.sms_provider:activeStateAction
+        _sylius:
+            redirect: route_backend_sms_provider_index

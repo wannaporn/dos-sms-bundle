@@ -1,0 +1,7 @@
+route_backend_sms_provider:
+    resource: @DoSSMSBundle/Resources/config/routing/backend/provider.yml
+    prefix: /providers
+
+route_backend_sms_record:
+    resource: @DoSSMSBundle/Resources/config/routing/backend/record.yml
+    prefix: /records

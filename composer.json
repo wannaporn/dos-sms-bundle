@@ -1,0 +1,37 @@
+{
+    "name": "liverbool/dos-sms-bundle",
+    "description": "SMS Bundle for Symfony",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ツ Liverbool",
+            "email": "nukboon@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "doctrine/orm": "~2.4",
+        "Carpe-Hora/SmsSender": "~1.4.0",
+        "liverbool/dos-resource-bundle": "0.15.*@dev",
+        "sylius/storage": "0.15.*@dev",
+        "symfony/symfony": "~2.7"
+    },
+    "require-dev": {
+        "liil/kint": "1.0",
+        "phpspec/phpspec": "~2.1"
+    },
+    "autoload": {
+        "psr-4": { "DoS\\SMSBundle\\": "" }
+    },
+    "autoload-dev": {
+        "psr-4": { "DoS\\SMSBundle\\spec\\": "spec/" }
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.15-dev"
+        }
+    }
+}

@@ -1,0 +1,12 @@
+dos_route_sms_send:
+    path: /send
+    defaults:
+        _controller: dos.controller.sms_record:sendAction
+        _sylius:
+            template: "DoSSMSBundle:Record:send.html.twig"
+
+dos_route_sms_callback:
+    path: /callback/{provider}
+    defaults:
+        _format: json
+        _controller: dos.controller.sms_record:callbackAction

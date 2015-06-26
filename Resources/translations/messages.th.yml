@@ -1,0 +1,17 @@
+ui.trans:
+    sms_provider:
+        name: Name
+        description: Description
+        actived: Actived
+
+        header:
+            index: Providers
+            create: New Provider
+            update: "Edit Provider {{ text }}"
+
+    breadcrumb:
+        sms_provider:
+            index: Providers
+
+        sms_record:
+            index: Records
