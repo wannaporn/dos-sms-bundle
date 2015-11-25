@@ -13,6 +13,8 @@ services:
         arguments:
             - @dos.manager.sms_provider
             - %dos.model.sms_provider.class%
+        calls:
+            - [setResourceFactory, [@dos.factory.sms_provider]]
 
     dos.sms.provider.record:
         class: %dos.sms.record.provider.class%
@@ -21,6 +23,8 @@ services:
             - @dos.sms.provider.provider
             - @dos.manager.sms_record
             - %dos.model.sms_record.class%
+        calls:
+            - [setResourceFactory, [@dos.factory.sms_record]]
 
     dos.sms.sender.provider.dummy:
         class: %dos.sms.sender.provider.dummy.class%

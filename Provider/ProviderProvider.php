@@ -3,10 +3,11 @@
 namespace DoS\SMSBundle\Provider;
 
 use Doctrine\ORM\EntityManager;
+use DoS\ResourceBundle\Factory\ResourceFactoryAware;
 use DoS\SMSBundle\Model\ProviderInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 
-class ProviderProvider
+class ProviderProvider extends ResourceFactoryAware
 {
     /**
      * @var EntityManager

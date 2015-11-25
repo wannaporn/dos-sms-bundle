@@ -4,6 +4,7 @@ namespace DoS\SMSBundle\Provider;
 
 use Doctrine\ORM\EntityManager;
 use DoS\ResourceBundle\Doctrine\ORM\EntityRepository;
+use DoS\ResourceBundle\Factory\ResourceFactoryAware;
 use DoS\SMSBundle\Model\RecordInterface;
 use DoS\SMSBundle\SMS\ProviderInterface;
 use libphonenumber\PhoneNumberUtil;
@@ -12,7 +13,7 @@ use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
-class RecordProvider
+class RecordProvider extends ResourceFactoryAware
 {
     /**
      * @var ProviderProvider
@@ -75,7 +76,7 @@ class RecordProvider
      */
     public function createNew()
     {
-        return $this->repository->createNew();
+        return $this->factory->createNew();
     }
 
     /**
