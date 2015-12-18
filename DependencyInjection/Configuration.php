@@ -17,25 +17,25 @@ class Configuration extends AbstractResourceConfiguration
         $rootNode = $treeBuilder->root('dos_sms');
 
         $this->setDefaults($rootNode, array(
-            'classes' => array(
+            'resources' => array(
                 'sms_provider' => array(
-                    'model' => 'DoS\SMSBundle\Model\Provider',
-                    'controller' => 'DoS\SMSBundle\Controller\ProviderController',
-                    'interface' => 'DoS\SMSBundle\Model\ProviderInterface',
-                    'form' => array(
-                        'default' => 'DoS\SMSBundle\Form\Type\ProviderType',
+                    'classes' => array(
+                        'model' => 'DoS\SMSBundle\Model\Provider',
+                        'controller' => 'DoS\SMSBundle\Controller\ProviderController',
+                        'interface' => 'DoS\SMSBundle\Model\ProviderInterface',
+                        'form' => array(
+                            'default' => 'DoS\SMSBundle\Form\Type\ProviderType',
+                        ),
                     ),
                 ),
                 'sms_record' => array(
-                    'model' => 'DoS\SMSBundle\Model\Record',
-                    'controller' => 'DoS\SMSBundle\Controller\RecordController',
-                    'interface' => 'DoS\SMSBundle\Model\RecordInterface',
-                    'form' => array(),
+                    'classes' => array(
+                        'model' => 'DoS\SMSBundle\Model\Record',
+                        'controller' => 'DoS\SMSBundle\Controller\RecordController',
+                        'interface' => 'DoS\SMSBundle\Model\RecordInterface',
+                        'form' => array(),
+                    ),
                 ),
-            ),
-            'validation_groups' => array(
-                'sms_provider' => array(),
-                'sms_record' => array(),
             ),
         ));
 

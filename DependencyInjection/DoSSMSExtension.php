@@ -12,15 +12,17 @@ class DoSSMSExtension extends AbstractResourceExtension
     /**
      * {@inheritdoc}
      */
+    protected function getBundleConfiguration()
+    {
+        return new Configuration();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function load(array $configs, ContainerBuilder $container)
     {
-        $config = $this->configure($configs, new Configuration(), $container,
-            self::CONFIGURE_LOADER |
-            self::CONFIGURE_DATABASE |
-            self::CONFIGURE_PARAMETERS |
-            self::CONFIGURE_VALIDATORS |
-            self::CONFIGURE_FORMS
-        );
+        $config = parent::load($configs, $container);
 
         // fix the sms.http_adapter definition to point to the right adapter
         $container->setAlias('dos.sms.http_adapter', sprintf('dos.sms.http_adapter.%s', $config['http_adapter']));
