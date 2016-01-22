@@ -5,6 +5,7 @@ namespace DoS\SMSBundle\Controller;
 use DoS\ResourceBundle\Controller\ResourceController;
 use DoS\SMSBundle\Provider\RecordProvider;
 use DoS\SMSBundle\SMS\StorableSender;
+use FOS\RestBundle\View\View;
 use SmsSender\Exception\WrappedException;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -36,6 +37,7 @@ class RecordController extends ResourceController
         sleep(5);
         $data = array();
         $status = 200;
+        $configuration = $this->requestConfigurationFactory->create($this->metadata, $request);
 
         try {
             $this->getSmsSender()->acceptCallback($provider, $request->query->all());
@@ -47,6 +49,6 @@ class RecordController extends ResourceController
             $status = 400;
         }
 
-        return $this->handleView($this->view($data, $status));
+        return $this->viewHandler->handle($configuration, View::create($data, $status));
     }
 }
