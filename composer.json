@@ -12,8 +12,8 @@
     "require": {
         "doctrine/orm": "~2.4",
         "Carpe-Hora/SmsSender": "~1.4.0",
-        "liverbool/dos-resource-bundle": "0.17.*",
-        "sylius/storage": "0.17.*",
+        "liverbool/dos-resource-bundle": "0.18.*",
+        "sylius/storage": "0.18.*",
         "symfony/symfony": "~2.7"
     },
     "require-dev": {
@@ -31,7 +31,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "0.17-dev"
+            "dev-master": "0.18-dev"
         }
     }
 }
