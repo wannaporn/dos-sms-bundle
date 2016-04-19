@@ -5,7 +5,6 @@ namespace DoS\SMSBundle\Model;
 class Provider implements ProviderInterface
 {
     use TimestampTrait;
-    use SoftDeleteTrait;
 
     /**
      * @var int

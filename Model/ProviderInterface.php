@@ -2,10 +2,9 @@
 
 namespace DoS\SMSBundle\Model;
 
-use DoS\ResourceBundle\Model\SoftDeletableInterface;
 use DoS\ResourceBundle\Model\TimestampableInterface;
 
-interface ProviderInterface extends TimestampableInterface, SoftDeletableInterface
+interface ProviderInterface extends TimestampableInterface
 {
     /**
      * @return int
